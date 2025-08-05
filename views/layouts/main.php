@@ -34,7 +34,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <header id="header">
     <?php
     NavBar::begin([
-        'brandLabel' => 'АПК Технологии',
+        'brandLabel' => 'Home budget',
         'brandImage' => Url::to("/images/logo.png", true),
         'brandUrl' => Yii::$app->homeUrl,
 
@@ -81,6 +81,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         </div>
     </div>
 </footer>
+
+<?php include_once Yii::getAlias('@app/views/_modal/_modal-item-form.php'); ?>
 
 <?php $this->endBody() ?>
 </body>
