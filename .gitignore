@@ -3,6 +3,8 @@
 
 composer.lock
 
+.osp
+
 # windows thumbnail cache
 Thumbs.db
 

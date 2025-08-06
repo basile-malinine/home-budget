@@ -1,6 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
+
 /** @var string $content */
 
 use yii\bootstrap5\Nav;
@@ -35,7 +36,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <?php
     NavBar::begin([
         'brandLabel' => 'Home budget',
-        'brandImage' => Url::to("/images/logo.png", true),
+        'brandImage' => !Yii::$app->user->isGuest ? Url::to("/images/logo.png", true) : '#',
         'brandUrl' => Yii::$app->homeUrl,
 
         'options' => ['class' => 'navbar navbar-expand-md navbar-light bg-light fixed-top']
@@ -45,12 +46,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         echo $this->render('menu');
     }
 
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav ms-auto'],
-        'items' => [
-            Yii::$app->user->isGuest
-                ? ['label' => 'Вход', 'url' => ['/user/login'],]
-                :
+    if (!Yii::$app->user->isGuest) {
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav ms-auto'],
+            'items' => [
                 [
                     'label' => \Yii::$app->user->identity->name,
                     'items' => [
@@ -61,9 +60,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         ],
                     ],
                 ]
-        ],
-    ]);
-    NavBar::end();
+            ],
+        ]);
+        NavBar::end();
+    }
     ?>
 </header>
 
