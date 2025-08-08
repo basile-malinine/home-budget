@@ -2,18 +2,22 @@
 
 namespace app\controllers;
 
-use app\models\User\LoginForm;
 use Yii;
-use yii\web\Controller;
-use yii\web\Response;
 
-class UserController extends Controller
+use app\models\User\LoginForm;
+use app\models\User\UserSearch;
+
+class UserController extends EntityController
 {
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
+    public function actionIndex()
+    {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $header = 'Пользователи';
+
+        return $this->render('list', compact(['searchModel', 'dataProvider', 'header']));
+    }
+
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {

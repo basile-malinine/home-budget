@@ -79,12 +79,15 @@ a.desc:after {
 }
 
 .form-login-header {
-    padding: 7px 0 7px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 7px 15px 7px 15px;
     margin-bottom: 12px;
     background-color: #F8F9FA;
     border-bottom: 1px solid #aeaeae;
     font-size: large;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .form-login-body {

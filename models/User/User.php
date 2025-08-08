@@ -5,8 +5,20 @@ namespace app\models\User;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $pass_hash
+ * @property int $active
+ */
 class User extends ActiveRecord implements IdentityInterface
 {
+    const ACTIVE = [
+        0 => 'Неактивный',
+        1 => 'Активный',
+    ];
+
     public static function tableName()
     {
         return 'user';
@@ -27,6 +39,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'name' => 'Имя пользователя',
             'email' => 'Адрес электронной почты',
+            'active' => 'Статус',
         ];
     }
 
