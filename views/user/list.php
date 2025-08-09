@@ -21,10 +21,10 @@ use app\models\User\UserSearch;
     <div class="page-top-panel">
         <div class="page-top-panel-header d-flex">
             <?= $header ?>
-            <a href="/user/create" class="btn btn-light btn-outline-secondary btn-sm mt-1 ms-auto pe-3">
-                <i class="fa fa-plus"></i>
-                <span class="ms-2">Добавить</span>
-            </a>
+<!--            <a href="/user/create" class="btn btn-light btn-outline-secondary btn-sm mt-1 ms-auto pe-3">-->
+<!--                <i class="fa fa-plus"></i>-->
+<!--                <span class="ms-2">Добавить</span>-->
+<!--            </a>-->
         </div>
     </div>
 

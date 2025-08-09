@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User\User;
 use Yii;
 
 use app\models\User\LoginForm;
@@ -16,6 +17,22 @@ class UserController extends EntityController
         $header = 'Пользователи';
 
         return $this->render('list', compact(['searchModel', 'dataProvider', 'header']));
+    }
+
+    public function actionRegistration()
+    {
+        $model = new User();
+        $header = 'Регистрация';
+
+        if ($this->request->isPost) {
+            if ($this->postRequestAnalysis($model)) {
+                $this->redirect(['/']);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('registration', compact(['model', 'header']));
     }
 
     public function actionLogin()

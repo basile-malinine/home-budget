@@ -42,6 +42,11 @@ use yii\bootstrap5\Html;
                 </div>
             </div>
 
+            <div class="mt-2" style="text-align: right;">
+                <?= Html::a(
+                    'Регистрация', 'registration', ['class' => 'col-form-label']) ?>
+            </div>
+
             <div class="row form-row mt-5">
                 <div class="form-col col-12 d-flex justify-content-between align-items-center">
                     <!-- Запомнить-->
