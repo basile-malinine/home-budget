@@ -43,6 +43,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'options' => ['class' => 'navbar navbar-expand-md navbar-light bg-light fixed-top'],
         ]);
 
+        echo '<div class="fs-5">Home Budget</div>';
+
         echo $this->render('menu');
 
         echo Nav::widget([

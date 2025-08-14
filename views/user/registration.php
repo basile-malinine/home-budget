@@ -6,7 +6,6 @@
 
 /** @var string $header */
 
-use kartik\select2\Select2;
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 use app\models\User\User;
@@ -23,7 +22,7 @@ use app\models\User\User;
     <div class="page-content-form">
 
         <?php $form = ActiveForm::begin([
-            'id' => 'page-content-form',
+            'id' => 'registration-form',
             'fieldConfig' => [
                 'template' => "{label}\n{input}\n{error}",
                 'labelOptions' => ['class' => 'col-form-label pt-0'],
