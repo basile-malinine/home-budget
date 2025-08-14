@@ -50,6 +50,7 @@ class UserController extends Controller
         $user->name = $this->username;
         $user->email = $this->email;
         $user->pass_hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+
         $res = $user->save();
         print_r($res ? 'Запись добавлена' : 'Не удалось добавить запись');
     }

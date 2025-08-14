@@ -5,8 +5,23 @@ namespace app\models\User;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $pass_hash
+ * @property int $active
+ */
 class User extends ActiveRecord implements IdentityInterface
 {
+    const ACTIVE = [
+        0 => 'Неактивный',
+        1 => 'Активный',
+    ];
+
+    public $password = '';
+    public $password_submit = '';
+
     public static function tableName()
     {
         return 'user';
@@ -15,10 +30,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'pass_hash'], 'required'],
-            [['name', 'pass_hash'], 'string'],
+            [['name', 'email', 'password', 'password_submit'], 'required'],
+            [['name', 'email', 'password', 'password_submit'], 'string'],
+            [['name', 'email', 'password', 'password_submit'], 'trim'],
             [['email'], 'email'],
-            [['email'], 'unique'],
+            [['name', 'email'], 'unique'],
+            [['password_submit'], 'compare', 'compareAttribute' => 'password'],
         ];
     }
 
@@ -27,7 +44,19 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'name' => 'Имя пользователя',
             'email' => 'Адрес электронной почты',
+            'active' => 'Статус',
+            'password' => 'Пароль',
+            'password_submit' => 'Подтверждение пароля',
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            $this->pass_hash = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+        }
+
+        return true;
     }
 
     public static function findIdentity($id)

@@ -34,19 +34,19 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <header id="header">
     <?php
-    NavBar::begin([
-        'brandLabel' => 'Home budget',
-        'brandImage' => !Yii::$app->user->isGuest ? Url::to("/images/logo.png", true) : '#',
-        'brandUrl' => Yii::$app->homeUrl,
-
-        'options' => ['class' => 'navbar navbar-expand-md navbar-light bg-light fixed-top']
-    ]);
-
     if (!Yii::$app->user->isGuest) {
+        NavBar::begin([
+            'brandLabel' => 'Home budget',
+            'brandImage' => Url::to("/images/logo.png", true),
+            'brandUrl' => Yii::$app->homeUrl,
+
+            'options' => ['class' => 'navbar navbar-expand-md navbar-light bg-light fixed-top'],
+        ]);
+
+        echo '<div class="fs-5">Home Budget</div>';
+
         echo $this->render('menu');
-    }
 
-    if (!Yii::$app->user->isGuest) {
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav ms-auto'],
             'items' => [
@@ -55,11 +55,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     'items' => [
                         [
                             'label' => 'Выйти',
-                            'url' => ['/user/logout']
+                            'url' => ['/user/logout'],
                             /*, 'linkOptions' => ['data-method' => 'post']*/
                         ],
                     ],
-                ]
+                ],
             ],
         ]);
         NavBar::end();

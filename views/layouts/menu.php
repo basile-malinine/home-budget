@@ -1,9 +1,6 @@
 <?php
 
 use yii\bootstrap5\Nav;
-use app\models\Company\Company;
-use app\models\LegalSubject\LegalSubject;
-use app\models\Product\Product;
 
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav ms-5'],
@@ -11,14 +8,24 @@ echo Nav::widget([
 
     'items' => [
         [
+            'options' => ['class' => 'navbar-nav me-3'],
             'label' => 'Справочники',
             'items' => [
                 [
                     'label' => 'Единицы измерения',
                     'url' => ['/unit'],
-                ]
-
+                ],
             ],
+        ],
+
+        [
+            'label' => 'Управление',
+            'items' => [
+                [
+                    'label' => 'Пользователи',
+                    'url' => ['/user'],
+                ],
+            ]
         ],
     ]
 ]);
