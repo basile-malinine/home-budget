@@ -76,6 +76,7 @@ a.desc:after {
     margin-top: 50px;
     border: 1px solid #aeaeae;
     border-radius: 3px;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-login-header {
