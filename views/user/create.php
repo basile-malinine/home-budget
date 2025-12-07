@@ -1,11 +1,11 @@
 <?php
 
 use yii\web\View;
-use app\models\Unit\Unit;
+use app\models\User\User;
 
 /* @var View $this */
-/* @var Unit $model */
+/* @var User $model */
 
-$header = 'Единица измерения (новая)';
+$header = 'Пользователь (новый)';
 
 echo $this->render('_form', compact(['model', 'header']));

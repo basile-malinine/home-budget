@@ -2,37 +2,24 @@
 
 namespace app\controllers;
 
-use app\models\User\User;
 use Yii;
+use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
 
 use app\models\User\LoginForm;
+use app\models\User\User;
 use app\models\User\UserSearch;
 
-class UserController extends EntityController
+class UserController extends BaseController
 {
-    public function actionIndex()
+    protected function getModel()
     {
-        $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $header = 'Пользователи';
-
-        return $this->render('list', compact(['searchModel', 'dataProvider', 'header']));
+        return new User();
     }
 
-    public function actionRegistration()
+    protected function getSearchModel()
     {
-        $model = new User();
-        $header = 'Регистрация';
-
-        if ($this->request->isPost) {
-            if ($this->postRequestAnalysis($model)) {
-                $this->redirect(['/']);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('registration', compact(['model', 'header']));
+        return new UserSearch();
     }
 
     public function actionLogin()

@@ -2,25 +2,21 @@
 
 namespace app\models\User;
 
-use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
-
 /**
- * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $password
  * @property string $pass_hash
- * @property int $active
  */
-class User extends ActiveRecord implements IdentityInterface
-{
-    const ACTIVE = [
-        0 => 'Неактивный',
-        1 => 'Активный',
-    ];
 
-    public $password = '';
-    public $password_submit = '';
+use Yii;
+use yii\web\IdentityInterface;
+
+use app\models\Base;
+
+class User extends Base implements IdentityInterface
+{
+    public string $password = '';
 
     public static function tableName()
     {
@@ -30,12 +26,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'email', 'password', 'password_submit'], 'required'],
-            [['name', 'email', 'password', 'password_submit'], 'string'],
-            [['name', 'email', 'password', 'password_submit'], 'trim'],
+            [['name'], 'required'],
+            [['name', 'email', 'password'], 'string'],
             [['email'], 'email'],
-            [['name', 'email'], 'unique'],
-            [['password_submit'], 'compare', 'compareAttribute' => 'password'],
+            [['email'], 'unique'],
+            [['password'], 'required',
+                'when' => function ($model) {
+                    return !isset($model->pass_hash);
+                }, 'message' => 'Необходимо заполнить Пароль.'
+            ],
         ];
     }
 
@@ -44,22 +43,20 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'name' => 'Имя пользователя',
             'email' => 'Адрес электронной почты',
-            'active' => 'Статус',
             'password' => 'Пароль',
-            'password_submit' => 'Подтверждение пароля',
         ];
     }
 
     public function beforeSave($insert)
     {
-        if ($insert) {
-            $this->pass_hash = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+        if ($insert || $this->password) {
+            $this->pass_hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
         }
 
         return true;
     }
 
-    public static function findIdentity($id)
+        public static function findIdentity($id)
     {
         return static::findOne($id);
     }

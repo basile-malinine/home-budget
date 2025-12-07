@@ -67,6 +67,8 @@ $config = [
                 // UnitController Единицы измерения
                 'unit/<action:(edit|delete)>/<id:\d+>' => 'unit/<action>',
 
+                // UserController Пользователи
+                'user/<action:(edit|delete)>/<id:\d+>' => 'user/<action>',
             ],
         ],
     ],

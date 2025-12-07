@@ -2,10 +2,9 @@
 
 namespace app\models\Unit;
 
-use yii\db\ActiveRecord;
+use app\models\Base;
 
-
-class Unit extends ActiveRecord
+class Unit extends Base
 {
     public static function tableName()
     {

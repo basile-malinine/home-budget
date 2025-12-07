@@ -2,12 +2,13 @@
 
 use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
+use yii\web\View;
 
-
-/** @var string $header Заголовок */
 /** @var ActiveDataProvider $dataProvider Данные */
 
-$this->registerJs('let controllerName = "unit";', \yii\web\View::POS_HEAD);
+$header = 'Единицы измерения';
+
+$this->registerJs('let controllerName = "unit";', View::POS_HEAD);
 $this->registerJsFile('@web/js/contextmenu-list.js');
 ?>
 
