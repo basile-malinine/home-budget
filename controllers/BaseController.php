@@ -4,15 +4,17 @@ namespace app\controllers;
 
 use yii\db\IntegrityException;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 abstract class BaseController extends Controller
 {
     abstract protected function getModel();
+
     abstract protected function getSearchModel();
 
-    public function actionIndex()
+    abstract protected function getTwoId();
+
+    public function actionIndex($id = null)
     {
         $searchModel = $this->getSearchModel();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -35,9 +37,9 @@ abstract class BaseController extends Controller
         return $this->render('create', compact('model'));
     }
 
-    public function actionEdit($id)
+    public function actionEdit($id, $id2 = null)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id, $id2);
 
         if ($this->request->isPost) {
             if ($this->postRequestAnalysis($model)) {
@@ -48,16 +50,16 @@ abstract class BaseController extends Controller
         return $this->render('edit', compact('model'));
     }
 
-    public function actionDelete($id): Response
+    public function actionDelete($id, $id2 = null): Response
     {
-        $this->deleteById($id);
+        $this->deleteById($id, $id2);
 
         return $this->redirect(['index']);
     }
 
-    protected function deleteById($id): bool
+    protected function deleteById($id, $id2): bool
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id, $id2);
 
         $dbMessages = \Yii::$app->params['messages']['db'];
         try {
@@ -89,12 +91,15 @@ abstract class BaseController extends Controller
         return false;
     }
 
-    protected function findModel($id)
+    protected function findModel($id, $id2)
     {
-        if (($model = $this->getModel()::findOne(['id' => $id])) !== null) {
-            return $model;
+        if ($id2) {
+            $params = $this->getTwoId();
+            $model = $this->getModel()::findOne([$params[0] => $id, $params[1] => $id2]);
+        } else {
+            $model = $this->getModel()::findOne($id);
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        return $model;
     }
 }

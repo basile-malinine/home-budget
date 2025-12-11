@@ -69,6 +69,25 @@ a.desc:after {
     margin-bottom: 1rem;
 }
 
+/* Название приложения ------------------ */
+
+.app-name-container {
+    height: 38px;
+    margin-left: -6px;
+    margin-right: 30px;
+    padding-top: 2px;
+    border-bottom: 2px solid #b3b3b3;
+}
+
+.app-name-text {
+    transform: scale(1, 1.1);
+    line-height: 0.5;
+    font-size: 36px;
+    font-stretch: 50%;
+    font-weight: normal;
+    color: #4F535B;
+}
+
 /* Форма входа в систему ---------------- */
 
 .form-login {
@@ -76,19 +95,15 @@ a.desc:after {
     margin-top: 50px;
     border: 1px solid #aeaeae;
     border-radius: 3px;
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-login-header {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 7px 15px 7px 15px;
+    padding: 7px 0 7px 0;
     margin-bottom: 12px;
     background-color: #F8F9FA;
     border-bottom: 1px solid #aeaeae;
     font-size: large;
-    /*text-align: center;*/
+    text-align: center;
 }
 
 .form-login-body {

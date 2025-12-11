@@ -22,6 +22,10 @@ class UserController extends BaseController
         return new UserSearch();
     }
 
+    protected function getTwoId()
+    {
+    }
+
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {

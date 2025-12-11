@@ -8,11 +8,10 @@ use Google_Client;
 use Google_Service_Sheets;
 use Google_Service_Sheets_ClearValuesRequest;
 use Google_Service_Sheets_ValueRange;
-use yii\base\Model;
 
 class GoogleBase extends Base
 {
-    private static Google_Service_Sheets $service;
+    protected static Google_Service_Sheets $service;
 
     protected static function initGoogleSheet(): void
     {

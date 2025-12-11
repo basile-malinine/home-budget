@@ -69,6 +69,16 @@ $config = [
 
                 // UserController Пользователи
                 'user/<action:(edit|delete)>/<id:\d+>' => 'user/<action>',
+
+                // SystemObjectController Объекты приложения
+                'system-object/<action:(edit|delete)>/<id:\d+>' => 'system-object/<action>',
+
+                // GoogleSheetController Таблицы Google
+                'google-sheet/<action:(edit|delete)>/<id:\d+>' => 'google-sheet/<action>',
+
+                // SystemObjectGoogleSheetController Объекты - Google
+                'system-object-google-sheet/<action:(index)>/<id:\d+>' => 'system-object-google-sheet/<action>',
+                'system-object-google-sheet/<action:(edit|delete)>/<id:\d+>/<id2:\d+>' => 'system-object-google-sheet/<action>',
             ],
         ],
     ],

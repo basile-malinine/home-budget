@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use yii\web\NotFoundHttpException;
 use app\models\Unit\Unit;
 use app\models\Unit\UnitSearch;
 
@@ -16,5 +15,9 @@ class UnitController extends BaseController
     protected function getSearchModel()
     {
         return new UnitSearch();
+    }
+
+    protected function getTwoId()
+    {
     }
 }
